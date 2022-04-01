@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: reference-troubleshoot-solution-issue.html 
+keywords: troubleshoot, solution, issues, snapcenter service, SAP HANA, Redis Pods, crashloopbackoff state, backup fails, tenant database 
+summary: SnapCenter サービスの問題のトラブルシューティングを行う。 
+---
+= の問題のトラブルシューティング
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+
+
+== 問題： Redis ポッドが CrashLoopBackOff 状態で停止します
+
+* 概要 * ハイアベイラビリティ構成では、クラスタのすべてのノードが停止していると、 AKS クラスタが稼働状態に戻りません。すべてのノードを再起動すると、 Redis ポッドがすべて「 CrashLoopBackOff 」状態になる場合があります。
+
+* 解決策 * システムを復元するには、次のコマンドを実行する必要があります。
+
+. コネクタにログインします。
+. Redis ポッドをすべて削除します。
++
+** 「 DOcker exec-it cloudmanager_snapcenter -- sh`
+** kubectl scale -- レプリカ =0 STS sc-dependencies redis -node -n SnapCenter
+
+
+. Redis ポッドがすべて削除されていることを確認します。「 kubectl はポッドを取得します。 n SnapCenter 」
+. Redis Pod が削除されていない場合は、次のコマンドを実行します。
++
+** kubectl delete pod sc-dependencies redis -node -0 -n SnapCenter
+** kubectl delete pod sc-dependencies redis -node -1 -n SnapCenter
+** kubectl delete pod sc-dependencies redis -node -2 -n SnapCenter
+
+
+. Redis ポッドがすべて削除されたら、「 kubectl scale -- replicases=3 STS sc-dependencies redis -node -n SnapCenter 」を実行します
+. 削除したすべてのポッドが稼働中であることを確認します。久保クテクルはポッド n SnapCenter を取得します
+
+
+
+
+== 問題：クラスタノードを再起動するとジョブが失敗します
+
+* 概要 * ハイアベイラビリティ構成では、クラスタのすべてのノードが停止していると、 AKS クラスタが稼働状態に戻りません。すべてのノードを再起動すると、ジョブがグレー表示またはタイムアウトになって詳細なタスクで失敗していることがわかります。
+
+* 解決策 * 次のコマンドを実行する必要があります。
+
+. コネクタにログインします。
+. RabbitMQ statefulset （ STS ）の展開を保存します。
++
+** 「 DOcker exec-it cloudmanager_snapcenter -- sh`
+** kubectl get STS Rabbitmq -o yaml -n SnapCenter > Rabbitmq_sts .yaml
+
+
+. RabbitMQ ポッドに接続されている永続ボリューム（ PVS ）を特定します。kubectl get pv | grep RabbitMq
+. RabbitMQ ポッドに接続されている Persistent Volume クレーム（ PVC ）を削除します。kubectl get pvc-n SnapCenter | grep RabbitMQ | awk {'print$1'}| xargs kubectl delete pvc-n SnapCenter
+. 手順 3 で確認した PVS をそれぞれ削除します。kubectl delete pv 'pvname
+. RabbitMQ STS を作成します。kubectl create -f Rabbitmq_sts .yaml -n SnapCenter
+
+
+
+
+== 問題：テナントデータベースの作成中にバックアップ処理が失敗する
+
+* 概要 * テナント・データベースの作成中にオンデマンドまたはスケジュールされたバックアップが開始されると、バックアップ処理は失敗します。
+
+* 解決策 * テナントデータベースの作成は、 SAP HANA システムのメンテナンス作業です。
+
+テナントデータベースを作成する前に、 SnapCenter サービスを使用して SAP HANA システムをメンテナンスモードにしておく必要があります。SAP HANA システムをメンテナンスモードにしたあとは、処理を開始できません。
+
+テナントデータベースを作成したら、 SAP HANA システムを本番モードに戻す必要があります。

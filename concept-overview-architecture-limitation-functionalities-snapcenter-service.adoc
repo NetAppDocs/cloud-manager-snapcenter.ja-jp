@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: concept-overview-architecture-limitation-functionalities-snapcenter-service.html 
+keywords: snapcenter service, data protection, SAP HANA, Azure NetApp Files, cloud manager, azure kubernetes service, limitation, functionalities 
+summary: SnapCenter サービスは、ネットアップクラウドストレージで実行されているアプリケーションにデータ保護機能を提供します。 
+---
+= SnapCenter サービスについて
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+SnapCenter サービスは、ネットアップクラウドストレージで実行されているアプリケーションにデータ保護機能を提供します。NetApp Cloud Manager で SnapCenter サービスを有効にすると、 Azure NetApp Files 上にある SAP HANA ® システムを、アプリケーションと整合性のある方法で効率的にバックアップおよびリストアできます。
+
+
+
+== アーキテクチャ
+
+SnapCenter サービスのアーキテクチャには、次のコンポーネントが含まれています。
+
+* SnapCenter サービス UI は、 Cloud Manager UI に統合されています。
++
+SnapCenter サービス UI は、ネットアップが管理する Cloud Manager SaaS フレームワークから提供されます。このフレームワークでは、複数のストレージ機能とデータ管理機能を利用できます。
+
+* Cloud Manager Connector は、 SnapCenter サービスやその他のサービスのライフサイクルを管理する、 Cloud Manager のコンポーネントです。
+* SnapCenter サービスは、 Azure Kubernetes Service （ AKS ）上にホストされる一連のデータ保護サービスであり、データ保護ワークフローをオーケストレーションします。
+
+
+
+NOTE: Cloud Manager Connector と SnapCenter サービスは、クラウドネットワークに導入されます。
+
+次の図に、 SnapCenter サービスの各コンポーネントの関係を示します。
+
+image:anf-architecture.png["SnapCenter サービスアーキテクチャ。"]
+
+ユーザが開始した要求については、 SnapCenter サービス UI が Cloud Manager SaaS と通信し、要求を検証すると Cloud Manager Connector にコールが転送されます。その後、 Connector は SnapCenter サービスと通信し、 SnapCenter サービスは Azure NetApp Files 管理 API と HANA システムコマンドを呼び出してデータ保護処理を実行します。
+
+SnapCenter サービスは、 HANA システムと同じ VNet に導入することも、別の VNet に導入することもできます。SnapCenter サービスシステムと HANA システムが異なるネットワークにある場合は、それらのシステム間にネットワーク接続を確立する必要があります。
+
+
+
+== サポートされる機能
+
+SnapCenter サービスは次の機能をサポートします。
+
+* SAP HANA システムを追加しています
+* SAP HANA システムのバックアップ
++
+** Snapshot ベースとファイルベースの両方のバックアップをサポートします
+** SAP HANA システムのオンデマンドバックアップをサポートします
+** システム定義のポリシーまたはカスタムポリシーを使用して、 SAP HANA システムのスケジュールされたバックアップをサポートします
++
+ポリシーでは、毎時、毎日、毎週、毎月などの異なるスケジュール頻度を指定できます。
+
+** では、非データボリュームとグローバル非データボリュームの両方のバックアップがサポートされます
+
+
+* ポリシーに基づいてバックアップを保持する
+* ユーザ指定のバックアップからの SAP HANA システムのリストア
+* バックアップおよびその他のジョブを監視しています
+* 不要な HANA システム上のデータやログバックアップのカタログの削除
+* 保護の概要、設定の詳細、およびジョブステータスをダッシュボードに表示する
+* E メールでアラートを送信する
+
+
+
+
+== 制限
+
+SnapCenter サービス 1.0 には、次の制限事項があります。
+
+* 国際化はサポートされていません。英語のブラウザを使用する必要があります。
+* SnapCenter サービスを有効にできるのは、「 Account Admin 」ロールの Cloud Manager ユーザのみです。
+* Azure Kubernetes Service （ AKS ）クラスタノード障害に関連する制限事項があります
++
+** AKS クラスタでノードの 1 つがオフラインになると、実行中のジョブは失敗する可能性がありますが、後続のジョブは実行されます。
+** AKS クラスタでは、ノードの 1 つがダウンした場合に SAP HANA システムを追加できませんが、他の処理は問題なしで実行されます。
++
+HANA システムを追加するには、ノードを起動する必要があります。
+
+** スケジューラはハイアベイラビリティ構成をサポートしていません。
++
+スケジューラが使用する MySQL ノードが停止した場合、スケジュールされた処理を続行するにはノードを起動する必要があります。
+
+
+
+

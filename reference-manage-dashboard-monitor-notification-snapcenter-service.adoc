@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: reference-manage-dashboard-monitor-notification-snapcenter-service.html 
+keywords: view dashboard, monitor operations, email notification, snapcenter service, SAP HANA, jobs 
+summary: 実行されたジョブのステータスの監視、 E メール通知の受信、およびダッシュボードの表示を行うことができます。 
+---
+= 処理の管理
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+実行されたジョブのステータスの監視、 E メール通知の受信、およびダッシュボードの表示を行うことができます。
+
+
+
+== ジョブを監視する
+
+SnapCenter サービスページの * ジョブモニタ * をクリックして、ジョブのステータスを表示します。Job Monitor ページには、全体的な概要が表示され、すべてのジョブが一覧表示されます。
+
+をクリックします image:screenshot-anf-view-system.png["詳細を表示するアイコンのスクリーンショット"] 詳細を表示する特定のジョブに対応しています。
+
+image:screenshot-anf-job-monitor.png["ジョブ監視ページのスクリーンショット"]
+
+
+
+== E メール通知
+
+E メール通知は、デフォルトでは、失敗したオンデマンドバックアップ、スケジュールされたバックアップ、およびリストア処理について送信されます。E メールを受信するのは、「 Account Admin 」ロールの Cloud Manager ユーザのみです。
+
+
+
+== ダッシュボードを表示します
+
+SnapCenter サービスページの * 概要 * をクリックして、保護の概要、構成の詳細、およびジョブステータスを表示します。
+
+image:screenshot-anf-dashboard.png["ダッシュボードのスクリーンショット"]

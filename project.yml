@@ -1,0 +1,95 @@
+---
+settings:
+  name: SnapCenter Service
+  platform: cloud
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: ja-jp,us-en,zh-cn,ko-kr
+sidebar:
+  entries:
+  - title: Cloud Manager のすべてのドキュメント
+    url: https://docs.netapp.com/us-en/cloud-manager-family
+  - title: SnapCenter サービスのドキュメント
+    url: "/index.html"
+  - title: リリースノート
+    url: "/whats-new.html"
+  - title: はじめに
+    entries:
+    - title: SnapCenter サービスについて
+      url: "/concept-overview-architecture-limitation-functionalities-snapcenter-service.html"
+    - title: クイックスタート
+      url: "/reference-get-started-snapcenter-service.html"
+    - title: Connector を作成して SnapCenter サービスを有効にするための前提条件
+      url: "/reference-prerequisites-azure-connector-snapcenter-service.html"
+    - title: Azure for SnapCenter サービスでコネクタを作成します
+      url: "/task-create-azure-connector-user-consent-snapcenter-service.html"
+    - title: Azure NetApp Files の SnapCenter サービスを有効にします
+      url: "/task-enable-snapcenter-service-azure-netapp-files.html"
+    - title: HDBSQL クライアントをインストールします
+      url: "/task-install-hdbsql-client-snapcenter-service.html"
+  - title: SnapCenter サービスを使用して SAP HANA システムを保護
+    entries:
+    - title: SAP HANA システムを追加
+      url: "/task-add-sap-hana-systems-non-data-volumes-snapcenter-service.html"
+    - title: SAP HANA システムをバックアップ
+      url: "/task-create-backup-ondemand-policies-schedule-sap-hana.html"
+    - title: SAP HANA システムのリストア
+      url: "/task-restore-sap-hana-systems.html"
+    - title: 処理の管理
+      url: "/reference-manage-dashboard-monitor-notification-snapcenter-service.html"
+    - title: の問題のトラブルシューティング
+      url: "/reference-troubleshoot-solution-issue.html"
+  - title: 知識とサポート
+    entries:
+    - title: サポートに登録します
+      url: "/task-support-registration.html"
+    - title: ヘルプを表示します
+      url: "/task-get-help.html"
+  - title: 法的通知
+    url: "/legal-notices.html"
+homepage:
+  tiles:
+  - title: はじめに
+    links:
+    - title: 最新情報
+      url: "/whats-new.html"
+    - title: SnapCenter サービスについて
+      url: "/concept-overview-architecture-limitation-functionalities-snapcenter-service.html"
+    - title: クイックスタート
+      url: "/reference-get-started-snapcenter-service.html"
+  - title: SnapCenter サービスを有効にします
+    links:
+    - title: 前提条件
+      url: "/reference-prerequisites-azure-connector-snapcenter-service.html"
+    - title: コネクタを作成します
+      url: "/task-create-azure-connector-user-consent-snapcenter-service.html"
+    - title: SnapCenter サービスを有効にします
+      url: "/task-enable-snapcenter-service-azure-netapp-files.html"
+    - title: HDBSQL クライアントをインストールします
+      url: "/task-install-hdbsql-client-snapcenter-service.html"
+  - title: SAP HANA システムを保護
+    links:
+    - title: SAP HANA システムを追加
+      url: "/task-add-sap-hana-systems-non-data-volumes-snapcenter-service.html"
+    - title: SAP HANA システムをバックアップ
+      url: "/task-create-backup-ondemand-policies-schedule-sap-hana.html"
+    - title: SAP HANA システムのリストア
+      url: "/task-restore-sap-hana-systems.html"
+  - title: ナレッジサポート
+    links:
+    - title: サポートに登録します
+      url: "/task-support-registration.html"
+    - title: ヘルプを表示します
+      url: "/task-get-help.html"
+  - title: ブログコミュニティ
+    links:
+    - title: ネットアップコミュニティ
+      url: https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS
+    - title: Cloud Central のブログです
+      url: https://cloud.netapp.com/blog
+    - title: クラウドに関する Web セミナー
+      url: https://cloud.netapp.com/events
+product-family: {}

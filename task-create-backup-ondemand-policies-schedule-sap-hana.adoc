@@ -1,0 +1,96 @@
+---
+sidebar: sidebar 
+permalink: task-create-backup-ondemand-policies-schedule-sap-hana.html 
+keywords: create, policies, backup policies, snapcenter service, SAP HANA, backup type, backup frequency, retention count, system-defined policies, on-demand backups, schedule backups 
+summary: システム定義またはカスタムのポリシーを使用して、 SAP HANA システムのオンデマンドバックアップまたはスケジュールバックアップを作成します。 
+---
+= SAP HANA システムをバックアップ
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+システム定義またはカスタムのポリシーを使用して、 SAP HANA システムのバックアップをオンデマンドで実行したり、スケジュールを設定したりできます。SnapCenter サービスは、 Snapshot ベースとファイルベースの両方のバックアップをサポートします。
+
+
+
+== バックアップポリシーを作成する
+
+ポリシーでバックアップタイプ、バックアップ頻度、スケジュール、保持タイプ、保持数を指定 データ保護処理の特性を把握できます。ポリシーは Cloud Manager UI を使用して作成できます。
+
+デフォルトでは、 Snapshot ベースとファイルベースのバックアップ処理用に 1 つずつ、 2 つのシステム定義ポリシーを使用できます。
+
+* 手順 *
+
+. SnapCenter サービスページで、 * ポリシー * > * 追加 * をクリックします。
+. Create Backup Policy ページで、次の操作を実行します。
++
+.. ポリシー名を指定します。
+.. このポリシーを使用して、作成するバックアップのタイプを選択します。
+.. バックアップ名を指定します。
++
+サフィックスのタイムスタンプはデフォルトで追加されます。バックアップ名に含めるその他のサフィックスを選択し、サフィックスを表示する順番を定義できます。
+
+.. スケジュールされたバックアップの頻度と開始時刻および終了時刻を指定します。
+.. 保持する Snapshot コピーの数または Snapshot コピーを保持する日数を指定します。
+
+
+. [ 追加（ Add ） ] をクリックします。
+
+
+をクリックすると、ポリシーを表示、編集、または削除できます image:screenshot-anf-view-system.png["詳細を表示するアイコンのスクリーンショット"] ポリシーに対応しています。
+
+
+
+== オンデマンドバックアップを作成
+
+ポリシーを関連付けるか、ポリシーを関連付けないことで、 SAP HANA システムのオンデマンドバックアップを作成します。
+
+* 手順 *
+
+. SnapCenter サービスページで、 * SAP HANA システム * をクリックします。
++
+SnapCenter サービスに追加されたすべてのシステムが表示されます。
+
+. をクリックします image:screenshot-anf-view-system.png["詳細を表示するアイコンのスクリーンショット"] 保護するシステムに対応しています。
+. [* On-Demand Backup* ] をクリックします。
+. [On-Demand Backup] ページで、次のいずれかの操作を実行します。
++
+** バックアップをポリシーに関連付ける場合は、ポリシーを選択し、 * バックアップの作成 * をクリックします。
+** バックアップをポリシーに関連付けない場合は、次の操作を実行します。
++
+... ［ ポリシー ］ フィールドで、 ［ * なし * ］ を選択します。
+... バックアップタイプを選択します。
++
+非データ・ボリュームをバックアップする場合は、バックアップ・タイプとして * Snapshot ベース * のみを選択できます。
+
+... 保持期間を指定します。
+... [ バックアップの作成 *] をクリックします。
+
+
+
+
+
+
+
+
+== スケジュールされたバックアップを作成する
+
+ポリシーを SAP HANA システムに関連付けて、スケジュールされたバックアップを作成します。
+
+* 手順 *
+
+. SnapCenter サービスページで、 * SAP HANA システム * をクリックします。
++
+SnapCenter サービスに追加されたすべてのシステムが表示されます。
+
+. をクリックします image:screenshot-anf-view-system.png["詳細を表示するアイコンのスクリーンショット"] 保護するシステムに対応しています。
+. [*Protect*]( 保護 ) をクリックします
+. SAP HANA システムの保護に使用するポリシーを選択します。
+. [*Protect*]( 保護 ) をクリックします
+
+
+* 詳細はこちら *https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-backup-anf-overview.html["SnapCenter サービスを使用した Azure NetApp Files での SAP HANA のバックアップとリカバリ"]

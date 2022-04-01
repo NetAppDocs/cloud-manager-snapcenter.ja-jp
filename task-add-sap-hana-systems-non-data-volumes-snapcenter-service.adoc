@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: task-add-sap-hana-systems-non-data-volumes-snapcenter-service.html 
+keywords: add, snapcenter service, SAP HANA, add, auto discovery, HDB user store keys, HDBSQL client, non-data volumes 
+summary: SAP HANA システムを追加し、非データボリュームを追加します。 
+---
+= SAP HANA システムを追加
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+SAP HANA システムを手動で追加SAP HANA システムの自動検出はサポートされていません。
+
+SAP HANA システムを追加するときは、 HDB ユーザストアキーを追加する必要があります。HDB セキュアユーザストアキーは、 SAP HANA システムの接続情報をクライアントにセキュアに格納するために使用され、 HDBSQL クライアントでは、セキュアなユーザストアキーを使用して SAP HANA システムに接続します。
+
+
+NOTE: AKS クラスタ内のノードが停止している場合、 SAP HANA システムを追加または変更することはできません。
+
+* 手順 *
+
+. SnapCenter サービスページで、 *SAP HANA システム *>*Add* をクリックします。
+. [ システムの詳細 ] ページで、次の操作を実行します。
++
+.. システムタイプを選択します。
+.. SAP HANA システムの SID を指定します。
+.. SAP HANA システムの名前を指定します。
+.. HDB Secure User Store Keys テキストボックスをクリックして、ユーザーストアキーの詳細を追加します。
++
+キー名、システムの詳細、ユーザ名、およびパスワードを指定します。
+
+.. [ 追加（ Add ） ] をクリックします。
++
+
+NOTE: マルチホスト SAP HANA システムを追加する場合は、各ホストのユーザストアキーを追加する必要があります。
+
+
+
+. [* Continue （続行） ] をクリックします
+. Storage Footprint ページで、次の手順を実行します。
++
+.. 作業環境を選択し、ネットアップアカウントを指定します。
+.. 必要なボリュームを選択します。
+.. [ ストレージの追加 ] をクリックします。
+
+
+. [* Continue （続行） ] をクリックします
+. すべての詳細を確認し、 * 追加 * をクリックします。
+
+
+SnapCenter サービスに追加された SAP HANA システムを編集または削除することもできます。SAP HANA システムを削除すると、関連付けられているバックアップとカタログのエントリがすべて削除され、保護されなくなります。
+
+
+
+== データボリューム以外のボリュームを追加してください
+
+マルチテナントデータベースコンテナまたは単一コンテナタイプの SAP HANA システムを追加したら、 HANA システムの非データボリュームを追加できます。
+
+* 手順 *
+
+. SnapCenter サービスページで、 SAP HANA システムをクリックします。
++
+SnapCenter サービスに追加されたすべてのシステムが表示されます。
+
+. をクリックします image:screenshot-anf-view-system.png["詳細を表示するアイコンのスクリーンショット"] 非データボリュームを追加するマルチテナントデータベースコンテナまたは単一コンテナタイプのシステムに対応します。
+. [ 非データボリュームの追加 ] をクリックします。
+. [ 新しいストレージの追加 ] をクリックします。
+

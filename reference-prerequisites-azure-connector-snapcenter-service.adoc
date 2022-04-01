@@ -1,0 +1,206 @@
+---
+sidebar: sidebar 
+permalink: reference-prerequisites-azure-connector-snapcenter-service.html 
+keywords: connector, prerequisites, firewall, network requirements, subnet, VNet, network security group, connectivity 
+summary: コネクタを作成して SnapCenter サービスを有効にする前に、前提条件を満たしていることを確認してください。 
+---
+= Connector を作成して SnapCenter サービスを有効にするための前提条件
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Azure でコネクタを作成して SnapCenter サービスを有効にする前に、特定のことを確認する必要があります。
+
+* コネクタ用に選択したサブネットが、 Azure Kubernetes Service （ AKS ）用に予約されている 169.254.0/16 、 172.17.0.0/16 、 172.17.0.0/16 、 172.31.0.0/16 、および 192.0.2.0/24 の IP アドレス範囲と重複しないようにします。
+* 選択したサブネットで AKS が実行されていないことを確認します。
+* 選択したサブネットが、それぞれのポート上の SAP HANA システムにアクセスできることを確認します。
+* 選択したサブネットの VNet が SAP HANA システムの VNet と異なる場合は、 VPN ゲートウェイ、ピアリング、またはその他の手段を使用して VNet が相互に通信できることを確認してください。
+* ファイアウォールの背後で SnapCenter サービスを有効にする場合は、に記載されている操作を実行する必要があります <<Network requirements>>。
++
+ファイアウォールの内側で SnapCenter サービスを有効にするかどうかを事前に決定する必要があります。SnapCenter サービスを有効にすると、ファイアウォールの内側で実行するように設定できなくなります。これは AKS の制限です。
+
+
+
+
+
+== ネットワーク要件
+
+クラウド環境内のリソースやプロセスをコネクタで管理できるように、ネットワークをセットアップします。
+
+
+
+=== ファイアウォールの設定
+
+ファイアウォールの背後で SnapCenter サービスを有効にする場合は、次の操作を実行する必要があります。
+
+
+NOTE: Azure ファイアウォールを使用している場合は、スクリプトを使用して以下の手順を実行できます。詳細については、を参照してください <<Azure Firewall configuration>>。
+
+* 手順 *
+
+. 以下のネットワークルールをファイアウォールに追加します。
++
+[cols="4*"]
+|===
+| デスティネーションエンドポイント | プロトコル | ポート | コメント 
+
+
+| https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview#available-service-tags["サービスタグ"^] -AzureCloud.< 地域 >:1194. | UDP | 1194 | プライベートコネクタとプライベート SnapCenter サービスクラスタを使用する場合は不要です。 
+
+
+| https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview#available-service-tags["サービスタグ"^] -AzureCloud .< リージョン >:9000 | TCP | 9 、 000 | プライベートコネクタとプライベート SnapCenter サービスクラスタを使用する場合は不要です。 
+
+
+| FQDN - ntp.ubuntu.com:123 | UDP | 123 | Azure 仮想マシンでの時刻同期に必要です。 
+
+
+| https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview#available-service-tags["サービスタグ"^] -AzureCloud.<Region>:443 | TCP | 443 | プライベートコネクタとプライベート SnapCenter サービスクラスタを使用する場合は不要です。 
+|===
+. 次の FQDN タグとポートの詳細を指定して、ファイアウォールにアプリケーションルールを追加します。
++
+** FQDN タグ - AzureNusesService
+** HTTPS ： 443
+
+
+. プロトコルとポートが HTTPS のターゲット FQDN として、以下のエンドポイントを含むアプリケーションルールを追加します。 443
++
+[cols="43,57"]
+|===
+| エンドポイント | 目的 
+
+
+| https://management.azure.com https://login.microsoftonline.com | Cloud Manager では、ほとんどの Azure リージョンに Cloud Volumes ONTAP を導入して管理できます。 
+
+
+| https://management.microSoftazure.de https://login.microsoftonline.de | Cloud Manager は、 Azure Germany リージョンに Cloud Volumes ONTAP を導入して管理できます。 
+
+
+| https://management.usgovcloudapi.net/ https://login.microsoftonline.com | Cloud Manager は、 Azure US GOV リージョンに Cloud Volumes ONTAP を導入して管理できます。 
+
+
+| \ https://api.services.cloud.netpp.com | NetApp Cloud Central への API 要求を許可します。 
+
+
+| \ https://cloud.support.netapp.com.s3.us-west-1.amazonaws.com | ソフトウェアイメージ、マニフェスト、およびテンプレートにアクセスできます。 
+
+
+| ¥ https://cognito-idp.us-east-1.amazonaws.com ¥ https://cognito-identity.us-east-1.amazonaws.com ¥ https://sts.amazonaws.com ¥ https://cloud-support-netapp-com-accelerated.s3.amazonaws.com | コネクタがマニフェスト、テンプレート、および Cloud Volumes ONTAP アップグレードイメージにアクセスしてダウンロードできるようにします。 
+
+
+| \ https://cloudmanagerinfraprod.azurecr.io | Docker を実行しているインフラのコンテナコンポーネントのソフトウェアイメージにアクセスでき、 Cloud Manager とのサービス統合のためのソリューションを提供します。 
+
+
+| \ https://kinesis.us-east-1.amazonaws.com | ネットアップが監査レコードからデータをストリーミングできるようにします。 
+
+
+| \ https://cloudmanager.cloud.netapp.com | ネットアップアカウントを含む Cloud Manager サービスとの通信 
+
+
+| https://netapp-cloud-account.auth0.com | NetApp Cloud Central との通信により、ユーザ認証を一元的に行うことができます。 
+
+
+| \ https://support.netapp.com | ネットアップ AutoSupport との通信： 
+
+
+| \ https://cloud-support-netapp-com.s3.us-west-1.amazonaws.com | システムライセンスとサポート登録を行うためのネットアップとの通信 
+
+
+| ¥ https://client.infra.support.netapp.com.s3.us-west-1.amazonaws.com ¥ https://cloud-support-netapp-com-accelerated.s3.us-west-1.amazonaws.com | ネットアップがサポートの問題のトラブルシューティングに必要な情報を収集できるようにします。 
+
+
+| * .blob.core.windows.net | プロキシを使用する場合は HA ペアに必要です。 
+
+
+| \ https://auth0.com | Auth0 認証の場合は必須です。 
+
+
+| ¥ https://registry-1.docker.io ¥ https://auth.docker.io ¥ https://production.cloudflare.docker.com | SnapCenter サービスワークフローエンジンの依存関係を取得します。 
+
+
+| \ https://exteranl-log.cloudmanager.netapp.com | 通信で Cloud Manager のログリポジトリにログを転送できます。 
+|===
+. SnapCenter サービスをインストールするサブネットを選択してください。
+. ルートを含むルートテーブルを作成します。
++
+** サブネットからファイアウォールの内部 IP アドレスにトラフィックを転送します
+** ファイアウォールのパブリック IP アドレスからインターネットにトラフィックを転送します。
+
+
+. ルートテーブルをサブネットに接続します。
+
+
+Cloud Manager Connector のネットワーク要件の詳細については、を参照してください https://docs.netapp.com/us-en/cloud-manager-connector/reference-networking-cloud-manager.html["コネクタのネットワーク要件"^]。
+
+
+
+=== Azure ファイアウォールの設定
+
+Azure ファイアウォールの背後で SnapCenter サービスを有効にする場合は、次の操作を実行する必要があります。
+
+* 必要なもの *
+
+* ファイアウォールを作成しておく必要があります（クラシックモード）。
+* SnapCenter サービス用の VNet とサブネットを作成しておく必要があります。
+* ファイアウォールリソースと SnapCenter サービスの VNet が異なるテナントにある場合は、 Azure シェルの両方のテナントにログインする必要があります。
+* ファイアウォール VNet と SnapCenter VNet が異なる場合は、 VNet 間のピアリングを確立する必要があります。
+
+
+* 手順 *
+
+. をダウンロードします link:media/scs_azure_firewall_config.sh["scs_azure_firewall_config.sh"] ローカルシステムにスクリプトをインストールします。
+. にログインします https://azure.microsoft.com/en-in/features/azure-portal/["Microsoft Azure ポータル"^]。
+. をクリックします image:screenshot-azure-cloud-shell.png["Azure クラウドシェルのスクリーンショット"] をクリックしてクラウドシェルを開き、 Bash コンソールを選択します。
++
+.. スクリプトを Azure クラウドシェルにアップロードします。
+.. スクリプトを実行する権限を割り当てます。
++
+chmod +x./scs_aze_firewall_config.sh
+
+.. スクリプトを実行します。
++
+scs_azure_firewall_config.sh -fwsubid <Firewall_SubscriptionID>-fwname <Firewall_name> -fwrg <Firewall_Resource_group> -scssubid <SnapCenter _Service_SubscriptionID>-scsvnet <SnapCenter Service_vnet_name> -scssubnet <SnapCenter Service _Subnet_name> -svnet_sv_group> SnapCenter <sr_net_group>
+
++
+
+NOTE: リソースグループを作成していない場合は、リソースグループが作成されます。コネクタの作成時に同じリソースグループを使用すると、 SnapCenter サービス関連のリソースをすべて同じリソースグループに含めることができます。
+
+
+
+
+
+* 結果 *
+
+* ファイアウォールルールが設定されている。
+* SnapCenter サービス用のリソースグループが作成されます。
+* SnapCenter サービスリソースグループにルートテーブルが作成されます。
+* ルートテーブルルールが設定されます。
+* ルートテーブルがサブネットに接続されます。
+
+
+
+
+=== HANA システムへの接続
+
+SnapCenter サービスクラスタは、 HDBSQL コマンドを使用して、ユーザのネットワーク内の HANA システムと通信する必要があります。SnapCenter クラスタと HANA システム間の通信チャネルは、次のようなさまざまなネットワークアーキテクチャを使用して許可する必要があります。
+
+* Connector および SnapCenter サービスクラスタは、 HANA システムと同じ VNet に導入されます
+* Connector および SnapCenter サービスクラスタは、 HANA システムのように別の VNet に導入され、 2 つの VNet 間の VNet ピアリングを使用して通信が確立されます。
+* Connector および SnapCenter サービスクラスタは、 HANA システムとして別の VNet に導入され、 2 つの VNet 間の VPN ゲートウェイを使用して通信が確立されます。
+
+
+
+
+=== セキュリティグループの設定
+
+HANA システムにネットワークセキュリティグループ（ NSG ）が設定されている場合は、ユーザストアキーで指定されたとおりに、 SnapCenter サービスのポートから HANA システムのポートへのインバウンド通信を許可する必要があります。
+
+* Protocol ：すべての TCP
+* サブネット： SnapCenter AKS クラスタサブネット
+* 目的： HDBSQL コマンドを実行する場合
+
+
+SnapCenter AKS クラスタで実行されている HANA サービスは、 SSL が有効になっている HANA システムとの SSL 通信をサポートします。

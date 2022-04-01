@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: task-install-hdbsql-client-snapcenter-service.html 
+keywords: HDBSQL client, snapcenter service, SAP HANA, protect, SAPCAR utility, scp, jump host 
+summary: SAP HANA データベースでデータ保護処理を実行するために、 HDBSQL クライアントをインストールします。 
+---
+= HDBSQL クライアントをインストールします
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+SnapCenter サービスを有効にしたあと、 SAP HANA データベースに対してデータ保護処理を実行する HDBSQL クライアントをインストールします。HDBSQL クライアントは、 SAP HANA システムとの通信に使用されます。
+
+* 手順 *
+
+. SAP アカウントから HDB クライアントソフトウェアをダウンロードします。
++
+拡張子（ .sar ）を持つアーカイブファイルです。例： IMDB_CLIENT20_008_20-80002082.sar
+
++
+
+NOTE: HDB Client ソフトウェアのバージョンは 2.4.202.1590784230 以降である必要があります。
+
+. SAP アカウントから最新の SAPCAR ユーティリティをダウンロードします。例： _SAPCAR_1010-70006178.EXE_
+. Cloud Manager UI で、 * Connector * をクリックしてコネクタ名を取得します。
+. にログインします https://azure.microsoft.com/en-in/features/azure-portal/["Microsoft Azure ポータル"^]。
+. 仮想マシン * をクリックします。
+. Cloud Manager Connector を検索し、コネクタに割り当てられているパブリック IP アドレスをコピーします。
++
+コネクタでパブリック IP が有効になっていない場合は、ジャンプホストを使用する必要があります。
+
+. SAPCAR ユーティリティと HDB クライアントアーカイブ（ .sar ）ファイルをコネクタマシンにコピーします。
++
+コネクタパスにファイルをコピーするには、クレデンシャル、またはコネクタの作成時に指定したキーが必要です。
+
++
+** 'cp <SAPCAR_utility><usersername>@<IP_address> ： /home/<username>`
+** 'cp <HDB_Client_archive><username>@<IP_address> ： /home/<username>`
++
+ファイルは _/home/<username>_ にコピーされます。
+
+
+
+. SSH のクレデンシャルまたはキーを使用して Connector VM にログインします。
+. Connector VM で次のコマンドを実行して、 HDBSQL クライアントを AKS にインストールします。
++
+.. 'UDO cp /home/<username>/<SAPCAR_utility>/var/lib/docker/volumes/cloudmanager_snapcenter volume/_data/`
+.. 'UDO cp /home/<username>/<HDB_Client_archive>/var/lib/docx/volumes/cloudmanager_snapcenter volume/_data/`
+.. 'sudo docker exec-it cloudmanager_snapcenter /bash/opt/NetApp/hdbclient/hdbclient.sh --archivefile <HDB_Client_archive> --archiveTESAR_utility>`
+
+
+
+
+* 詳細はこちら *
+
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/copy-files-to-linux-vm-using-scp["SCP を使用してファイルを移動する方法"^]

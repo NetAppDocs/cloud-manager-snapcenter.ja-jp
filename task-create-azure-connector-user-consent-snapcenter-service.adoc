@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: task-create-azure-connector-user-consent-snapcenter-service.html 
+keywords: azure, connector, cloud central, snapcenter service, user consent, tenant admin, create connector, enable, disable, azure marketplace 
+summary: Azure for SnapCenter サービスでコネクタを作成します。 
+---
+= Azure for SnapCenter サービスでコネクタを作成します
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager の機能を使用するには、アカウント管理者がコネクタを導入する必要があります。Connector を使用すると、 Cloud Manager でパブリッククラウド環境内のリソースとプロセスを管理できます。
+
+デフォルトでは、 Azure Marketplace から Connector を作成できます。の手順を実行しているとき https://docs.netapp.com/us-en/cloud-manager-connector/task-launching-azure-mktp.html["Azure Marketplace からコネクタを作成します"^]では、次の点に注意してください。
+
+* Cloud Manager for Cloud Volumes ONTAP が指定されている場合は、 SnapCenter サービスにも同じ機能を利用できます。
+* Cloud Manager Name に、よりわかりやすいようにコネクタ VM の名前を指定します。これは、 Cloud Manager UI にコネクタ名として表示されます。
+* パブリック IP なしでコネクタを設定した場合、またはファイアウォールを設定した場合は、コネクタマシンに接続するジャンプホストが必要です。
+
+
+ある場合 https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/configure-user-consent?tabs=azure-portal#user-consent-settings["ユーザーの同意"^] Azure Active Directory で有効にするか、テナント管理者から同意を得られる場合は、 Cloud Manager UI からコネクタを作成できます。
+
+
+
+== ユーザー同意が有効になっています
+
+Azure Active Directory でユーザの同意が有効になっている場合は、 https://docs.netapp.com/us-en/cloud-manager-connector/task-creating-connectors-azure.html["Cloud Manager からコネクタを作成します"^]。
+
+
+
+== ユーザーの同意が無効になっています
+
+. 次のいずれかを実行します。
++
+** 管理者の同意ワークフローが Active Directory で設定されている場合は、次の手順を実行します https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/configure-admin-consent-workflow#how-users-request-admin-consent["管理者の同意を要求します"^]。
+** 管理者の同意ワークフローが設定されていない場合は、次の操作を実行します。
++
+... https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/grant-admin-consent#construct-the-url-for-granting-tenant-wide-admin-consent["テナント全体の管理者の同意を得るための URL を作成します"^]。
++
+
+NOTE: clientID に _989efff4-9a9e-46fa -9f17 -de39e15714f9_ を指定します。これは、 Cloud Manager ウィザードで指定された Cloud Manager Azure アプリケーション ID です。
+
+... ブラウザで URL を実行し、同意を得るようにテナント管理者に依頼します。
++
+表示されたエラーは管理者が無視できます
+
+
+
+
+
+. https://docs.netapp.com/us-en/cloud-manager-connector/task-creating-connectors-azure.html["Cloud Manager からコネクタを作成します"^]。
+
+
+
+IMPORTANT: コンピュータに接続するには、コネクタの作成時に入力したユーザ名とパスワード、またはキーが必要です

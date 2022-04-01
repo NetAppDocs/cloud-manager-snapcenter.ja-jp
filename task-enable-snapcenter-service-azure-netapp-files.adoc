@@ -1,0 +1,182 @@
+---
+sidebar: sidebar 
+permalink: task-enable-snapcenter-service-azure-netapp-files.html 
+keywords: enable snapcenter service, SAP HANA, azure netapp files, azure kubernetes service, AKS, connector, user assigned managed identity, permission, non-high availability, AKS cluster 
+summary: Cloud Manager UI を使用して SnapCenter サービスを有効にします。 
+---
+= Azure NetApp Files の SnapCenter サービスを有効にします
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+SnapCenter サービスは、 Cloud Manager の UI を使用して有効にできます。SnapCenter サービスが有効になると、 SnapCenter サービスをホストする Azure Kubernetes Service （ AKS ）クラスタが作成されます。
+
+* 必要なもの *
+
+* 「 microsoft.ContainerService 」リソースプロバイダを Azure サブスクリプションに登録する必要があります。詳細については、を参照してください https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider["リソースプロバイダの登録方法"^]。
+* すべてのを確認してください link:prerequisites-azure-connector-snapcenter-service.html["前提条件"] 達成された。
+
+
+* このタスクについて *
+
+AKS クラスタは、コネクタの作成時に選択した同じリソースグループと同じサブネット内に作成されます。パブリック IP アドレスを指定せずにコネクタを作成すると、プライベートモードで AKS クラスタが作成されます。
+
+AKS クラスタを作成および管理するには、必要な権限を持つユーザが割り当てられた管理対象 ID が必要です。ユーザーが割り当てた管理対象 ID が作成され、 Connector VM に割り当てられます。
+
+* 手順 *
+
+. Cloud Manager にログインします
+. Cloud Manager で作成したコネクタを選択します。
++
+保護する SAP HANA システムへのネットワーク接続がコネクタにあることを確認します。
+
+. [ すべてのサービス *>*SnapCenter *>*Enable*] をクリックします。
+. 次のいずれかを実行します。
++
+** Cloud Manager UI からコネクタを作成しており、ロールの作成と割り当てを行う権限がある場合は、ユーザに割り当てられた管理対象 ID が SnapCenter サービスのインストール時に自動的に作成されます。
++
+... 「 * Azure ログインを使用 * 」を選択します。
+... [ 準備完了 ] ページで、 [* 続行 ] をクリックします。
+... Azure クレデンシャルを指定します。
++
+
+TIP: Azure のログインアカウントに十分な権限があることを確認してください。権限および権限の割り当て方法については、を参照してください <<Permissions required for Azure login account>>。
+
+
+
+** Azure Marketplace で作成したコネクタ、またはロールを作成して割り当てる権限がない場合は、次の手順に従って、ユーザが割り当てた管理対象 ID を作成します。
++
+... 「 * Azure CLI スクリプトを使用 * 」を選択します。
+... Azure アカウントに対する十分な権限がない場合は、管理者にお問い合わせください。
++
+権限および権限の割り当て方法については、を参照してください <<Permissions required for Azure login account>>。
+
+... をダウンロードします link:media/prerequisite_azure.sh["prerequisite_azure.sh"] ローカルシステムにスクリプトをインストールします。
+... にログインします https://azure.microsoft.com/en-in/features/azure-portal/["Microsoft Azure ポータル"^]。
+... をクリックします image:screenshot-azure-cloud-shell.png["Azure クラウドシェルのスクリーンショット"] をクリックしてクラウドシェルを開き、 Bash コンソールを選択します。
+... スクリプトを Azure クラウドシェルにアップロードします。
+... スクリプトを実行する権限を割り当てます。
++
+chmod +x./利用 前提条件 _azure.sh
+
+... スクリプトを実行します。
++
+prerequisite_azure.sh -s <subscription_ID> -g <connector_resourcegroup_name> -c <connector_vm_name>`
+
+
+
+
+
+. クラスタ構成ページで、次の手順を実行します。
++
+.. クラスタ構成を選択
++
+*** High Availability * を選択すると、 3 つのワーカーノードを含む Azure Kubernetes Service （ AKS ）クラスタが使用可能なゾーン全体に作成されます。
+*** Single Node * を選択すると、シングルノードの AKS クラスタが作成されます。
+
+
+.. Kubernetes ポッドのアドレス範囲を指定します。
++
+Kubernetes ポッドのアドレス範囲が、仮想ネットワーク、ピア関係にある仮想ネットワーク、接続されているオンプレミスネットワークの IP 範囲と重複しないようにします。また、範囲はサービスアドレス範囲および Docker ブリッジアドレスと重複しないようにしてください。
+
+.. Kubernetes Service のアドレスを指定します。
++
+Kubernetes サービスのアドレス範囲が、仮想ネットワーク、ピア関係にある仮想ネットワーク、および接続されているオンプレミスネットワークの IP 範囲と重複しないようにします。また、範囲はポッドのアドレス範囲および Docker ブリッジアドレスと重複しないようにします。
+
+.. Docker ブリッジネットワークを指定します。
++
+Docker Bridge アドレスが、仮想ネットワーク、ピア関係にある仮想ネットワーク、および接続されているオンプレミスネットワークの IP 範囲と重複しないようにします。また、範囲が Pod のアドレス範囲およびサービスアドレス範囲と重複しないようにしてください。
+
+.. パブリック IP を使用せずにコネクタを作成し、 VNet でカスタム DNS サーバを使用している場合は、「 * カスタム DNS サーバのサポート * 」を選択します。
++
+
+IMPORTANT: カスタム DNS サーバがホストされている VNet のプライベート DNS ゾーンに仮想ネットワークリンクを作成する必要があります。プライベート DNS ゾーン名とリソースグループ名が UI に表示されます。
+
+
+
+. [ レビュー ] ページで詳細を確認し、 [ 有効にする ] をクリックします。
+. SnapCenter サービスを正常に有効にしたら、 [* 終了 *] をクリックします。
+
+
+* 結果 *
+
+* SnapCenter サービスを有効にすると、 AKS クラスタが作成されます。をクリックすると、 AKS クラスタの詳細を表示できます image:screenshot-cluster-details.png["クラスタの詳細を表示するアイコンのスクリーンショット"]。
++
+
+NOTE: SnapCenter サービスを有効にできなかった場合は、問題を修正して [* 再試行 * ] をクリックします。
+
+* ユーザーに割り当てられた管理対象 ID を作成すると、カスタムロールに割り当てられます。
++
+** ユーザーに割り当てられた管理対象 ID は ' コネクタリソースグループのスコープで以下の権限を持つカスタムロールに割り当てられます
++
+[source, json]
+----
+"Microsoft.Resources/subscriptions/resourceGroups/read",
+"Microsoft.ContainerService/managedClusters/read",
+"Microsoft.ContainerService/managedClusters/write",
+"Microsoft.ContainerService/managedClusters/delete",
+"Microsoft.ContainerService/managedClusters/listClusterUserCredential/action",
+"Microsoft.ManagedIdentity/userAssignedIdentities/assign/action",
+"Microsoft.ManagedIdentity/userAssignedIdentities/read",
+"Microsoft.Compute/virtualMachines/read",
+"Microsoft.Network/networkInterfaces/read"
+----
+** ユーザが割り当てた管理対象 ID は、コネクタの VNet の範囲で以下の権限を持つカスタムロールに割り当てられます。
++
+[source, json]
+----
+"Microsoft.Authorization/roleAssignments/read",
+"Microsoft.Network/virtualNetworks/subnets/join/action",
+"Microsoft.Network/virtualNetworks/subnets/read",
+"Microsoft.Network/virtualNetworks/read",
+"Microsoft.Network/virtualNetworks/join/action"
+----
+** ファイアウォールにルーティングするためにサブネット上にルートテーブルが設定されている場合、ユーザに割り当てられた管理対象 ID は、ルートテーブルのスコープで次の権限を持つカスタムロールに割り当てられます。
++
+[source, json]
+----
+"Microsoft.Network/routeTables/*",
+"Microsoft.Network/networkInterfaces/effectiveRouteTable/action",
+"Microsoft.Network/networkWatchers/nextHop/action"
+----
+** コネクタがパブリック IP なしでインストールされている場合、ユーザーが割り当てた管理対象 ID は、プライベート DNS ゾーンのスコープで以下の権限を持つカスタムロールに割り当てられます。
++
+[source, json]
+----
+"Microsoft.Network/privateDnsZones/*"
+----
+
+
+
+
+
+
+== Azure のログインアカウントには権限が必要です
+
+Azure ログインアカウントは、ユーザが割り当てた管理対象 ID 、必要なロールを作成し、その ID を Connector VM に割り当てるために使用されます。
+
+
+IMPORTANT: ログインアカウントのクレデンシャルは SnapCenter サービス内のどこにも保存されず、 API の呼び出しには使用されません。クレデンシャルは、 UI でのみ使用されます。
+
+* 手順 *
+
+. を使用して、カスタムロールを作成します link:media/SnapCenter_Deployment_Role1.json["SnapCenter の導入 _ ロール 1.json"] ファイル。
++
+SnapCenter _Deployment_Role1.json ファイルの <Subscription_ID> を、 Azure サブスクリプション ID に置き換える必要があります。
+
+. コネクタのリソースグループのスコープで、ロールをログインアカウントに割り当てます。
+. を使用して、カスタムロールを作成します link:media/SnapCenter_Deployment_Role2.json["SnapCenter の導入 _ ロール 2.json"] ファイル。
++
+SnapCenter _Deployment_Role2.json ファイルの <Subscription_ID> を、 Azure サブスクリプション ID に置き換える必要があります。
+
+. コネクタの VNet 以降のスコープでログインアカウントにロールを割り当てます。
+. ある場合 link:prerequisites-azure-connector-snapcenter-service.html#firewall-configuration["ファイアウォールを設定しました"]を使用して、カスタムロールを作成します link:media/SnapCenter-Deployment-Role3.json["SnapCenter - 導入 - Role3.json"] ファイル。
++
+SnapCenter _Deployment_Role3.json ファイルの <Subscription_ID> を Azure サブスクリプション ID に置き換える必要があります。
+
+. SnapCenter サブネットに関連付けられているルートテーブルの範囲で、ロールをログインアカウントに割り当てます。
+
