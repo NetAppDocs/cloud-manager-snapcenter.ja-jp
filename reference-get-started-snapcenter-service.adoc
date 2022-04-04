@@ -16,10 +16,10 @@ summary: SnapCenter サービスを導入してデータを保護するための
 SnapCenter サービスを利用して、データを保護する手順をいくつか紹介します。
 
 [role="quick-margin-para"]
-お勧めします https://docs.netapp.com/us-en/cloud-manager-get-started/task-signing-up.html["NetApp Cloud Central に登録"^]、 https://docs.netapp.com/us-en/cloud-manager-get-started/task-logging-in.html["Cloud Manager にログインします"^]をクリックし、を設定します https://docs.netapp.com/us-en/cloud-manager-accounts/task-setting-up-cloud-central-accounts.html["ネットアップアカウント"^]。
+お勧めします https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-signing-up.html["NetApp Cloud Central に登録"^]、 https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-logging-in.html["Cloud Manager にログインします"^]をクリックし、を設定します https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-setting-up-netapp-accounts.html["ネットアップアカウント"^]。
 
 [role="quick-margin-para"]
-SnapCenter サービスを導入できるのは、アカウント管理者だけです。ただし、アカウント管理者と SnapCenter 管理者は、どちらもさまざまな操作を実行できます。 https://docs.netapp.com/us-en/cloud-manager-accounts/reference-user-roles.html["詳細はこちら。"^]
+SnapCenter サービスを導入できるのは、アカウント管理者だけです。ただし、アカウント管理者と SnapCenter 管理者は、どちらもさまざまな操作を実行できます。 https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-user-roles.html["詳細はこちら。"^]
 
 [role="quick-margin-para"]
 すべてのを確認してください link:prerequisites-azure-connector-snapcenter-service.html["前提条件"] コネクタを作成して SnapCenter サービスを有効にするには、次の手順を実行します。

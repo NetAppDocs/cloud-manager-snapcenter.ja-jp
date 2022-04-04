@@ -151,7 +151,6 @@
   <block id="9e4cfd7ef75c01c5ac965cb1ba1bac37" category="list-text">ファイアウォールのパブリック IP アドレスからインターネットにトラフィックを転送します。</block>
   <block id="4bef0203103722e65f656f8c35646b87" category="list-text">ルートテーブルをサブネットに接続します。</block>
   <block id="7ebcb503cdda50b6cfafe4b188689a5c" category="inline-link">コネクタのネットワーク要件</block>
-  <block id="d9b18cee7a313ead74dd7a023666ffa9" category="paragraph">Cloud Manager Connector のネットワーク要件の詳細については、を参照してください<block ref="57f818e1db49e293a718988eb6d733d8" category="inline-link-rx"></block>。</block>
   <block id="ca3fae953ace3814f44551f58d2984bf" category="section-title">Azure ファイアウォールの設定</block>
   <block id="bd114f893a39a34dfb70d101f6cc8d27" category="paragraph">Azure ファイアウォールの背後で SnapCenter サービスを有効にする場合は、次の操作を実行する必要があります。</block>
   <block id="d428ebb7ac02e1484781b38a799a4f99" category="paragraph">* 必要なもの *</block>
@@ -361,9 +360,7 @@
   <block id="63785c950a9f3cb1e82193ec1f7e49ee" category="inline-link">NetApp Cloud Central に登録</block>
   <block id="5970bd5da21d70901770347c11bbaaaf" category="inline-link">Cloud Manager にログインします</block>
   <block id="ac252743de820aac9183d9f76d4bed67" category="inline-link">ネットアップアカウント</block>
-  <block id="448b4179e9081f9b09ecb407bfc3d375" category="paragraph">お勧めします<block ref="1f33e40b7cbc500b81a81880d0472d5d" category="inline-link-rx"></block>、<block ref="85362a42d667fef5ad89f333e6ef6863" category="inline-link-rx"></block>をクリックし、を設定します<block ref="e21a9fac1d28e9fb068a4b77b13a00a9" category="inline-link-rx"></block>。</block>
   <block id="d59048f21fd887ad520398ce677be586" category="inline-link">詳細はこちら。</block>
-  <block id="1a1fb24e7da5a3ddceed77de5f61f530" category="paragraph">SnapCenter サービスを導入できるのは、アカウント管理者だけです。ただし、アカウント管理者と SnapCenter 管理者は、どちらもさまざまな操作を実行できます。<block ref="f16792f5e43bceae84f18b6113aacc62" category="inline-link-rx"></block></block>
   <block id="f908c36705844b4672f06b0e10ee4838" category="paragraph">すべてのを確認してください <block ref="fa07f7c80e3b9954be9b34a08d085342" category="inline-link-macro-rx"></block> コネクタを作成して SnapCenter サービスを有効にするには、次の手順を実行します。</block>
   <block id="9ee90c6524cb5493257b2167abc94c5c" category="inline-link-macro">Azure for SnapCenter サービスでコネクタを作成します</block>
   <block id="ef2af854781ce71784c836ac55ee5298" category="paragraph">お勧めします <block ref="4d9e1737fd40621293357dd1e83461e4" category="inline-link-macro-rx"></block>。</block>
@@ -412,7 +409,6 @@
   <block id="a266f6237722f9b5a4130ef692c55210" category="doc">Azure for SnapCenter サービスでコネクタを作成します</block>
   <block id="fc41b305b8f564b87007b7d9f6ccc823" category="paragraph">Cloud Manager の機能を使用するには、アカウント管理者がコネクタを導入する必要があります。Connector を使用すると、 Cloud Manager でパブリッククラウド環境内のリソースとプロセスを管理できます。</block>
   <block id="65803824e330be5dda78189602241b9d" category="inline-link">Azure Marketplace からコネクタを作成します</block>
-  <block id="34f79c41d25181a7b13c9385fbd7ea59" category="paragraph">デフォルトでは、 Azure Marketplace から Connector を作成できます。の手順を実行しているとき<block ref="02cd17b9f9a29ca67113e5669fd9247e" category="inline-link-rx"></block>では、次の点に注意してください。</block>
   <block id="e77ff8b764d001fc5632f5914fa1efbb" category="list-text">Cloud Manager for Cloud Volumes ONTAP が指定されている場合は、 SnapCenter サービスにも同じ機能を利用できます。</block>
   <block id="3407e20e2dda7ef741cae11aedbebc06" category="list-text">Cloud Manager Name に、よりわかりやすいようにコネクタ VM の名前を指定します。これは、 Cloud Manager UI にコネクタ名として表示されます。</block>
   <block id="4a89c5f604f86d04b1924294cbcb21d4" category="list-text">パブリック IP なしでコネクタを設定した場合、またはファイアウォールを設定した場合は、コネクタマシンに接続するジャンプホストが必要です。</block>
@@ -420,7 +416,6 @@
   <block id="42b868e2104121f766618462fe94607c" category="paragraph">ある場合<block ref="76b48a38c537fcda47ae8e3a8eb5b6b6" category="inline-link-rx"></block> Azure Active Directory で有効にするか、テナント管理者から同意を得られる場合は、 Cloud Manager UI からコネクタを作成できます。</block>
   <block id="4784e3f9b0f7b16fd2b7e96dba490438" category="section-title">ユーザー同意が有効になっています</block>
   <block id="036a55993c4eaf06878d19dff8ddb328" category="inline-link">Cloud Manager からコネクタを作成します</block>
-  <block id="11cf5fe8d9e595e932847c44809b0452" category="paragraph">Azure Active Directory でユーザの同意が有効になっている場合は、<block ref="9aadc2506edf0d025dd3c0665f0cff70" category="inline-link-rx"></block>。</block>
   <block id="6ef901b02394aca9745109e7a2528dd0" category="section-title">ユーザーの同意が無効になっています</block>
   <block id="0da4a1a8618ceded22f25810a530ebc1" category="inline-link">管理者の同意を要求します</block>
   <block id="e4ee08261df520a9645e6a5a23eaf1a8" category="list-text">管理者の同意ワークフローが Active Directory で設定されている場合は、次の手順を実行します<block ref="6d8cf01151ef5a360f3c449b4a270ed1" category="inline-link-rx"></block>。</block>
@@ -431,7 +426,6 @@
   <block id="598f1da796ed62d80dddd63cb8775774" category="list-text">ブラウザで URL を実行し、同意を得るようにテナント管理者に依頼します。</block>
   <block id="3cc2e72844bf5927e62f9110eb43bd87" category="paragraph">表示されたエラーは管理者が無視できます</block>
   <block id="e7cf5a691d8b98575b52980ab32d1529" category="inline-link">Cloud Manager からコネクタを作成します</block>
-  <block id="8ae39ac91e2944d49fd9febe7f84103c" category="list-text"><block ref="77b641a6e84a3fa8d2e9c3859683b592" category="inline-link-rx"></block>。</block>
   <block id="1f1b6b890eecc430a090f1c146a38865" category="admonition">コンピュータに接続するには、コネクタの作成時に入力したユーザ名とパスワード、またはキーが必要です</block>
   <block id="9998e542affb998a1071422d2fa357a2" category="summary">Cloud Manager で SnapCenter サービスを有効にすると、 Azure NetApp Files 上にある SAP HANA システムを、アプリケーションと整合性のある方法で効率的にバックアップおよびリストアできます。</block>
   <block id="62b15c6416b971695b696987cd557ace" category="doc">SnapCenter サービスのドキュメント</block>
@@ -454,4 +448,10 @@
   <block id="dd490b81914dd945601e442a41cb4222" category="sidebar">ネットアップコミュニティ</block>
   <block id="ff6c37cbc252e306a6b4e390ec13cbc1" category="sidebar">Cloud Central のブログです</block>
   <block id="ad203e818e0c9d7f42f1c260b33875f3" category="sidebar">クラウドに関する Web セミナー</block>
+  <block id="9f56f8bbc28af80cd3cf3d7228017568" category="paragraph">Cloud Manager Connector のネットワーク要件の詳細については、を参照してください<block ref="7da03693753a0c0ef80665697b2bb493" category="inline-link-rx"></block>。</block>
+  <block id="0c79dd8db9f5b2ef65ce5b7b099a8230" category="paragraph">お勧めします<block ref="a421814eb6c01eb6ce8e83ff79157c0f" category="inline-link-rx"></block>、<block ref="47131f7a795cd1802b4efb27c1c3b1d1" category="inline-link-rx"></block>をクリックし、を設定します<block ref="4aa1c3f57d195559cab186a77b7b9ae0" category="inline-link-rx"></block>。</block>
+  <block id="e231ca02da01dbea5a879a5606ce215a" category="paragraph">SnapCenter サービスを導入できるのは、アカウント管理者だけです。ただし、アカウント管理者と SnapCenter 管理者は、どちらもさまざまな操作を実行できます。<block ref="8fa6d8cd701869ab47ef7e41561c184d" category="inline-link-rx"></block></block>
+  <block id="45ab6bb46fca37e62de63fe69b1001b7" category="paragraph">デフォルトでは、 Azure Marketplace から Connector を作成できます。の手順を実行しているとき<block ref="c7df1b09d8813160eb999d0e84d790d1" category="inline-link-rx"></block>では、次の点に注意してください。</block>
+  <block id="66927997372367201f4dc39b4aff5954" category="paragraph">Azure Active Directory でユーザの同意が有効になっている場合は、<block ref="01fb2668fa31d38aaab027973d968923" category="inline-link-rx"></block>。</block>
+  <block id="c4f2841f3455964464167d0edd8574d4" category="list-text"><block ref="7b8983978fe4cc64f5f87a5d56ffac25" category="inline-link-rx"></block>。</block>
 </blocks>

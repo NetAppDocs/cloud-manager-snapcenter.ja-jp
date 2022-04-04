@@ -133,7 +133,7 @@ NOTE: Azure ファイアウォールを使用している場合は、スクリ�
 . ルートテーブルをサブネットに接続します。
 
 
-Cloud Manager Connector のネットワーク要件の詳細については、を参照してください https://docs.netapp.com/us-en/cloud-manager-connector/reference-networking-cloud-manager.html["コネクタのネットワーク要件"^]。
+Cloud Manager Connector のネットワーク要件の詳細については、を参照してください https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-networking-cloud-manager.html["コネクタのネットワーク要件"^]。
 
 
 
