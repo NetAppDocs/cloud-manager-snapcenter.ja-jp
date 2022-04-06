@@ -6,6 +6,7 @@ summary: システム定義またはカスタムのポリシーを使用して�
 ---
 = SAP HANA システムをバックアップ
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

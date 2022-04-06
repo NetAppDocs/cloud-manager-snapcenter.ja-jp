@@ -6,6 +6,7 @@ summary: コネクタを作成して SnapCenter サービスを有効にする�
 ---
 = Connector を作成して SnapCenter サービスを有効にするための前提条件
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

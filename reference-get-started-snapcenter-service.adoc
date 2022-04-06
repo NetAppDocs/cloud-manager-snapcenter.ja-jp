@@ -6,6 +6,7 @@ summary: SnapCenter サービスを導入してデータを保護するための
 ---
 = はじめに
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

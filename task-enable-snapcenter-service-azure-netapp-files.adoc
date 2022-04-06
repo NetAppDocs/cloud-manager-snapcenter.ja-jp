@@ -6,6 +6,7 @@ summary: Cloud Manager UI を使用して SnapCenter サービスを有効にし
 ---
 = Azure NetApp Files の SnapCenter サービスを有効にします
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: SAP HANA システムを追加し、非データボリュームを追�
 ---
 = SAP HANA システムを追加
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

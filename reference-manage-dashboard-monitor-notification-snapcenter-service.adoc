@@ -6,6 +6,7 @@ summary: 実行されたジョブのステータスの監視、 E メール通�
 ---
 = 処理の管理
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

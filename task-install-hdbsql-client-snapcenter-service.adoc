@@ -6,6 +6,7 @@ summary: SAP HANA データベースでデータ保護処理を実行するた�
 ---
 = HDBSQL クライアントをインストールします
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

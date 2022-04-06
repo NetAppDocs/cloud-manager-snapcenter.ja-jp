@@ -6,6 +6,7 @@ summary: SnapCenter サービスの問題のトラブルシューティングを
 ---
 = の問題のトラブルシューティング
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
