@@ -33,4 +33,4 @@ SnapCenter サービスに追加されたシステムが表示されます。
 
 IMPORTANT: データベースをリストアしたあとに、 HANA Studio を使用して SAP HANA システムのポイントインタイムリカバリを実行すると、保持設定に従って SnapCenter サービスによって削除されたデータバックアップカタログのエントリがリストアされることがあります。削除されたデータバックアップカタログのエントリがリカバリ処理によってリストアされた場合、 SnapCenter サービスはそのエントリを検出および削除できません。これにより、 SnapCenter サービスでログカタログが正しくクリーンアップされない可能性があります。SnapCenter サービスのバックアップエントリを確認して、新規にリストアされたすべてのデータバックアップカタログエントリを特定し、それらのエントリを手動で削除できます。
 
-* 詳細はこちら *https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-backup-anf-overview.html["SnapCenter サービスを使用した Azure NetApp Files での SAP HANA のバックアップとリカバリ"]
+* 詳細はこちら *https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-backup-anf-overview.html["SnapCenter サービスを使用した Azure NetApp Files での SAP HANA のバックアップとリカバリ"^]

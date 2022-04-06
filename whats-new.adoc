@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: whats-new.html 
 keywords: 'what"s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes' 
-summary: <service> の新機能について説明します。 
+summary: SnapCenter サービスの新機能について説明します。 
 ---
 = SnapCenter サービスの新機能
 :hardbreaks:
@@ -41,6 +41,6 @@ link:concept-overview-architecture-limitation-functionalities-snapcenter-service
 
 * コネクタを作成し、 SnapCenter サービスを有効にして、 SAP HANA システムを追加し、バックアップとリストアの処理を実行する必要があります。
 +
-link:task-get-started-snapcenter-service.html["はじめに"]
+link:reference-get-started-snapcenter-service.html["はじめに"]
 
 

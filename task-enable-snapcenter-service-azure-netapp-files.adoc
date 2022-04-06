@@ -18,7 +18,7 @@ SnapCenter サービスは、 Cloud Manager の UI を使用して有効にで�
 * 必要なもの *
 
 * 「 microsoft.ContainerService 」リソースプロバイダを Azure サブスクリプションに登録する必要があります。詳細については、を参照してください https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider["リソースプロバイダの登録方法"^]。
-* すべてのを確認してください link:prerequisites-azure-connector-snapcenter-service.html["前提条件"] 達成された。
+* すべてのを確認してください link:reference-prerequisites-azure-connector-snapcenter-service.html["前提条件"] 達成された。
 
 
 * このタスクについて *
@@ -174,7 +174,7 @@ SnapCenter _Deployment_Role1.json ファイルの <Subscription_ID> を、 Azure
 SnapCenter _Deployment_Role2.json ファイルの <Subscription_ID> を、 Azure サブスクリプション ID に置き換える必要があります。
 
 . コネクタの VNet 以降のスコープでログインアカウントにロールを割り当てます。
-. ある場合 link:prerequisites-azure-connector-snapcenter-service.html#firewall-configuration["ファイアウォールを設定しました"]を使用して、カスタムロールを作成します link:media/SnapCenter-Deployment-Role3.json["SnapCenter - 導入 - Role3.json"] ファイル。
+. ある場合 link:reference-prerequisites-azure-connector-snapcenter-service.html#firewall-configuration["ファイアウォールを設定しました"]を使用して、カスタムロールを作成します link:media/SnapCenter-Deployment-Role3.json["SnapCenter - 導入 - Role3.json"] ファイル。
 +
 SnapCenter _Deployment_Role3.json ファイルの <Subscription_ID> を Azure サブスクリプション ID に置き換える必要があります。
 

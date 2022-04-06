@@ -93,4 +93,4 @@ SnapCenter サービスに追加されたすべてのシステムが表示され
 . [*Protect*]( 保護 ) をクリックします
 
 
-* 詳細はこちら *https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-backup-anf-overview.html["SnapCenter サービスを使用した Azure NetApp Files での SAP HANA のバックアップとリカバリ"]
+* 詳細はこちら *https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-backup-anf-overview.html["SnapCenter サービスを使用した Azure NetApp Files での SAP HANA のバックアップとリカバリ"^]

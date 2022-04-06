@@ -15,7 +15,7 @@ summary: Azure for SnapCenter サービスでコネクタを作成します。
 [role="lead"]
 Cloud Manager の機能を使用するには、アカウント管理者がコネクタを導入する必要があります。Connector を使用すると、 Cloud Manager でパブリッククラウド環境内のリソースとプロセスを管理できます。
 
-デフォルトでは、 Azure Marketplace から Connector を作成できます。の手順を実行しているとき https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-launching-azure-mktp.html["Azure Marketplace からコネクタを作成します"^]では、次の点に注意してください。
+デフォルトでは、 Azure Marketplace から Connector を作成できます。の手順を実行しているとき https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-launching-azure-mktp.html["Azure Marketplace からコネクタを作成します"]では、次の点に注意してください。
 
 * Cloud Manager for Cloud Volumes ONTAP が指定されている場合は、 SnapCenter サービスにも同じ機能を利用できます。
 * Cloud Manager Name に、よりわかりやすいようにコネクタ VM の名前を指定します。これは、 Cloud Manager UI にコネクタ名として表示されます。
@@ -28,7 +28,7 @@ Cloud Manager の機能を使用するには、アカウント管理者がコネ
 
 == ユーザー同意が有効になっています
 
-Azure Active Directory でユーザの同意が有効になっている場合は、 https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-azure.html["Cloud Manager からコネクタを作成します"^]。
+Azure Active Directory でユーザの同意が有効になっている場合は、 https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-azure.html["Cloud Manager からコネクタを作成します"]。
 
 
 
@@ -52,7 +52,7 @@ NOTE: clientID に _989efff4-9a9e-46fa -9f17 -de39e15714f9_ を指定します�
 
 
 
-. https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-azure.html["Cloud Manager からコネクタを作成します"^]。
+. https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-azure.html["Cloud Manager からコネクタを作成します"]。
 
 
 
